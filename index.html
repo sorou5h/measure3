@@ -214,9 +214,9 @@
 
             <!-- Window Information Section (Dynamic) -->
             <h2> </h2>
-            <section>
-
-                <div class="windowInfoSection window-info" style="width: calc(100% - 5px); border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;" >
+            <section class="window-container">
+                <span class="section-number">1</span>
+                <div class="windowInfoSection window-info" style="width: calc(100% - 5px); border-bottom: 1px solid #ccc; border-top: 1px solid #ccc;">
                     <!-- <label for="room">ROOM:</label> -->
                     <input type="text" class="room" name="room" id="room1" style="background-color: #D3E6FF; font-weight: bold; padding-bottom: 10px; padding-top: 10px;  border-left: 1px solid #ccc;" required>
                 </div>
@@ -327,7 +327,7 @@
         </form>
         
         <script>
-            let windowSectionCounter = 2; // Initialize the counter
+            let windowSectionCounter = 1; // Initialize the counter
 
             function convertToFraction(input) {
             // Get the input value
@@ -377,29 +377,37 @@
                 return `${roundedDecimal.toFixed(3)}`; // Default to decimal inches if no matching fraction is found
             }
 
-            function addWindowSection() {
-                // Clone the entire window information section and append it to the form
-                const windowSections = document.querySelectorAll('.windowInfoSection');
-                const lastWindowSection = windowSections[windowSections.length - 1];
-    
-                if (lastWindowSection) {
-                    const newWindowSection = lastWindowSection.parentNode.cloneNode(true);
-                    // Update the IDs and names of the new window section elements to make them unique
-                    newWindowSection.querySelectorAll('[id]').forEach(element => {
-                        const oldId = element.id;
-                        const newId = oldId.replace(/\d+/, match => +match + windowSectionCounter);
-                        element.id = newId;
-                        element.setAttribute('name', newId); // Also update the 'name' attribute
-                        element.value = ''; // Clear the value if needed
-                    });
-                    // Append the new window section to the form
-                    document.querySelector('form').appendChild(newWindowSection);
-                    // Increment the counter for the next window section
-                    windowSectionCounter++;
-                } else {
-                    console.error('No existing window section found.');
-                }
-            }
+           // Remove the second declaration of windowSectionCounter
+// let windowSectionCounter = 1; // Initialize the counter to 1
+
+function addWindowSection() {
+    // Clone the entire window information section and append it to the form
+    const windowSections = document.querySelectorAll('.window-container');
+    const lastWindowSection = windowSections[windowSections.length - 1];
+
+    if (lastWindowSection) {
+        const newWindowSection = lastWindowSection.cloneNode(true);
+        // Increment the counter for the next window section
+        windowSectionCounter++;
+
+        // Update the section number in the cloned window section
+        const sectionNumberElement = newWindowSection.querySelector('.section-number');
+        if (sectionNumberElement) {
+            sectionNumberElement.textContent = windowSectionCounter;
+        }
+
+        // Reset input field values in the cloned section (if needed)
+        newWindowSection.querySelectorAll('input, select').forEach(element => {
+            element.value = '';
+        });
+
+        // Append the new window section to the form
+        document.querySelector('form').appendChild(newWindowSection);
+    } else {
+        console.error('No existing window section found.');
+    }
+}
+
 
             function saveData() {
                 const customerData = {
