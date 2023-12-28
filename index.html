@@ -82,7 +82,7 @@
                 box-sizing: border-box;
                 border: none;
                 /* border-bottom: 1px solid #ccc; Add an underline */
-                width: 102%;
+                width: 101%;
                 background-color: transparent; /* Transparent background */
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 font-size: 16px;
@@ -183,6 +183,7 @@
             <button type="button" onclick="clearWindowInfo()" id="clearButton">Clear</button>
             <button type="button" onclick="createCommentSection()" id="commentButton">Add Comment</button>
             <button type="button" id="removeWindowButton" onclick="removeWindowSection()">Remove Window</button>
+            <button type="button" id="removeCommentButton" onclick="removeCommentSection()">Remove Comment</button>
         </div>
         <form>
             <!-- Customer Information Section -->
@@ -548,6 +549,10 @@
                     // Append the comment section to the form
                     const form = document.querySelector('form');
                     form.appendChild(commentSection);
+
+                    // Show the remove button when creating the comment section
+                    const removeCommentButton = document.getElementById('removeCommentButton');
+                    removeCommentButton.style.display = 'inline-block';
                 } else {
                     console.log('Comment section already exists.');
                 }
@@ -573,6 +578,17 @@
                     windowSectionCounter--;
                 } else {
                     console.log('Cannot remove the last section.');
+                }
+            }
+            function removeCommentSection() {
+                // Select the comment section
+                const commentSection = document.getElementById('commentSection');
+
+                if (commentSection) {
+                    // Remove the comment section
+                    commentSection.remove();
+                } else {
+                    console.log('Comment section does not exist.');
                 }
             }
 
