@@ -13,17 +13,8 @@
                 padding: 0;
                 background-color: #fff;
                 color: #333;
-                min-height: 100vh;
-
+                /* min-height: 100vh; */
             }
-
-            /* Media query for smaller screens like iPad */
-@media screen and (max-width: 1024px) {
-    body {
-        min-height: calc(100vh + 80px); /* Increase the height for smaller screens like iPad */
-    }
-}
-
 
             form {
                 width: 97%;
@@ -98,6 +89,7 @@
                 font-size: 16px;
                 text-align: center; /* Adjust text alignment */
                 padding-bottom: 10px;
+                font-size: 20px;
             }
 
             /* Style the label elements */
@@ -474,10 +466,15 @@
                 const saveButton = document.getElementById('saveButton');
                 const clearButton = document.getElementById('clearButton');
                 const commentButton = document.getElementById('commentButton');
+                const removeWindowButton = document.getElementById('removeWindowButton');
+                const removeCommentButton = document.getElementById('removeCommentButton');
+
                 addButton.style.display = 'none';
                 saveButton.style.display = 'none';
                 clearButton.style.display = 'none';
                 commentButton.style.display = 'none';
+                removeWindowButton.style.display = 'none';
+                removeCommentButton.style.display = 'none';
 
                 // Extract customer name and order number from the data
                 const customerName = data.customerData.customerName;
@@ -512,6 +509,8 @@
                     saveButton.style.display = 'inline-block';
                     clearButton.style.display = 'inline-block';
                     commentButton.style.display = 'inline-block';
+                    removeWindowButton.style.display = 'inline-block';
+                    removeCommentButton.style.display = 'inline-block';
                 })
                 .catch((error) => {
                     console.error('Error generating PDF:', error);
@@ -519,6 +518,8 @@
                     saveButton.style.display = 'inline-block';
                     clearButton.style.display = 'inline-block';
                     commentButton.style.display = 'inline-block';
+                    removeWindowButton.style.display = 'inline-block';
+                    removeCommentButton.style.display = 'inline-block';
                 });
             }
 
