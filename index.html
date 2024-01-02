@@ -178,12 +178,12 @@
     </head>
     <body>
         <div class="button-container" style="text-align: center;">
-            <button type="button" id="addWindowButton" onclick="addWindowSection()">Add Window</button>
             <button type="button" onclick="saveData()" id="saveButton">Save</button>
-            <button type="button" onclick="clearWindowInfo()" id="clearButton">Clear</button>
+            <button type="button" id="addWindowButton" onclick="addWindowSection()">Add Window</button>
             <button type="button" onclick="createCommentSection()" id="commentButton">Add Comment</button>
             <button type="button" id="removeWindowButton" onclick="removeWindowSection()">Remove Window</button>
             <button type="button" id="removeCommentButton" onclick="removeCommentSection()">Remove Comment</button>
+            <button type="button" onclick="clearWindowInfo()" id="clearButton">Clear</button>
         </div>
         <form>
             <!-- Customer Information Section -->
@@ -225,13 +225,13 @@
                     <label for="type">Type:</label>
                     <select class="type" name="type" id="type1" required>
                         <option value="mt6"> </option>
-                        <option value="Roller">Roller</option>
+                        <option value="Roller">Roller Shade</option>
                         <option value="Cascade">Cascade</option>
-                        <option value="Horizantal1">1" Alum</option>
-                        <option value="Horizantal2">2" Hori</option>
+                        <option value="Horizantal1">1" Aluminium</option>
+                        <option value="Horizantal2">2" Horizantal</option>
                         <option value="Vertical">Vertical</option>
                         <option value="Romen">Romen</option>
-                        <option value="ww">Woven</option>
+                        <option value="ww">Woven Wood</option>
                     </select>
                 </div>
 
@@ -250,12 +250,12 @@
                 </div>
         
                 <div class="windowInfoSection" style="width: calc(13% - 60px); border-bottom: 1px solid #ccc;">
-                    <label for="width">W Width:</label>
+                    <label for="width">Window Width:</label>
                     <input type="text" class="width" name="width" id="width1" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
                 <div class="windowInfoSection" style="width: calc(13% - 60px); border-bottom: 1px solid #ccc;">
-                    <label for="height">W Height:</label>
+                    <label for="height">Window Height:</label>
                     <input type="text" class="height" name="height" id="height1" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
@@ -265,12 +265,12 @@
                 </div>
         
                 <div class="windowInfoSection" style="width: calc(13% - 60px); border-bottom: 1px solid #ccc;">
-                    <label for="bwidth">B Width:</label>
+                    <label for="bwidth">Exact Width:</label>
                     <input type="text" class="bwidth" name="bwidth" id="width2" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
                 <div class="windowInfoSection" style="width: calc(13% - 60px); border-bottom: 1px solid #ccc;">
-                    <label for="bheight">B Height:</label>
+                    <label for="bheight">Exact Height:</label>
                     <input type="text" class="bheight" name="bheight" id="height2" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
@@ -464,15 +464,10 @@
                 const saveButton = document.getElementById('saveButton');
                 const clearButton = document.getElementById('clearButton');
                 const commentButton = document.getElementById('commentButton');
-                const removeWindowButton = document.getElementById('removeWindowButton');
-                const removeCommentButton = document.getElementById('removeCommentButton');
                 addButton.style.display = 'none';
                 saveButton.style.display = 'none';
                 clearButton.style.display = 'none';
                 commentButton.style.display = 'none';
-                removeWindowButton.style.display = 'none';
-                removeCommentButton.style.display = 'none';
-                
 
                 // Extract customer name and order number from the data
                 const customerName = data.customerData.customerName;
@@ -488,7 +483,7 @@
                     filename: `${sanitizedCustomerName}_${sanitizedOrderNumber}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
                     // html2canvas: { scale: 1.5 }, // Reduced scale
-                    jsPDF: { unit: 'mm', format: 'a3', orientation: 'landscape' },
+                    jsPDF: { unit: 'mm', format: 'letter', orientation: 'landscape' },
                 })
                 .toPdf()
                 .get('pdf')
@@ -518,14 +513,21 @@
             }
 
             function clearWindowInfo() {
-            // Clear window information fields
-                const windowSections = document.querySelectorAll('.windowInfoSection');
-                windowSections.forEach((windowSection, index) => {
-                    const inputFields = windowSection.querySelectorAll('input, select');
-                    inputFields.forEach((field) => {
-                        field.value = '';
+                // Display a confirmation prompt
+                const confirmed = confirm("Are you sure you want to clear?");
+    
+                if (confirmed) {
+                // Clear window information fields
+                    const windowSections = document.querySelectorAll('.windowInfoSection');
+                    windowSections.forEach((windowSection, index) => {
+                        const inputFields = windowSection.querySelectorAll('input, select');
+                        inputFields.forEach((field) => {
+                            field.value = '';
+                        });
                     });
-                });
+                } else {
+                    // User clicked 'Cancel,' do nothing
+                }
             }
             
             function createCommentSection() {
@@ -596,6 +598,30 @@
                     console.log('Comment section does not exist.');
                 }
             }
+
+
+
+// Check if the user agent indicates that the device is an iPad
+function isiPad() {
+    return /iPad/i.test(navigator.userAgent);
+}
+
+// Add extra space at the bottom of the page for iPad devices
+function addExtraSpaceForiPad() {
+    if (isiPad()) {
+        const extraSpace = document.createElement('div');
+        extraSpace.id = 'extraSpaceForiPad';
+        extraSpace.style.height = '200px'; // Adjust the height as needed
+        document.body.appendChild(extraSpace);
+    }
+}
+
+// Call the function to add extra space if the device is an iPad
+addExtraSpaceForiPad();
+
+
+
+
 
     		var today = new Date().toLocaleDateString('en-CA'); // You can change 'en-CA' to your preferred locale
     		// Set the value of the date input field to today's date
