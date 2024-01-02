@@ -250,12 +250,12 @@
                 </div>
         
                 <div class="windowInfoSection" style="width: calc(13% - 60px); border-bottom: 1px solid #ccc;">
-                    <label for="width">Window Width:</label>
+                    <label for="width">Win Width:</label>
                     <input type="text" class="width" name="width" id="width1" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
                 <div class="windowInfoSection" style="width: calc(13% - 60px); border-bottom: 1px solid #ccc;">
-                    <label for="height">Window Height:</label>
+                    <label for="height">Win Height:</label>
                     <input type="text" class="height" name="height" id="height1" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
@@ -598,26 +598,6 @@
                     console.log('Comment section does not exist.');
                 }
             }
-
-
-
-// Check if the user agent indicates that the device is an iPad
-function isiPad() {
-    return /iPad/i.test(navigator.userAgent);
-}
-
-// Add extra space at the bottom of the page for iPad devices
-function addExtraSpaceForiPad() {
-    if (isiPad()) {
-        const extraSpace = document.createElement('div');
-        extraSpace.id = 'extraSpaceForiPad';
-        extraSpace.style.height = '400px'; // Adjust the height as needed
-        document.body.appendChild(extraSpace);
-    }
-}
-
-// Call the function to add extra space if the device is an iPad
-addExtraSpaceForiPad();
 
 
 
