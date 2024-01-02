@@ -13,8 +13,22 @@
                 padding: 0;
                 background-color: #fff;
                 color: #333;
-                min-height: calc(100vh - 80px);
+                body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #fff;
+                color: #333;
+                min-height: 100vh;
+
             }
+
+            /* Media query for smaller screens like iPad */
+@media screen and (max-width: 1024px) {
+    body {
+        min-height: calc(100vh + 80px); /* Increase the height for smaller screens like iPad */
+    }
+}
 
             form {
                 width: 97%;
