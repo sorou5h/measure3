@@ -13,6 +13,7 @@
                 padding: 0;
                 background-color: #fff;
                 color: #333;
+                min-height: calc(120vh - 40px);
             }
 
             form {
@@ -483,7 +484,7 @@
                     filename: `${sanitizedCustomerName}_${sanitizedOrderNumber}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
                     // html2canvas: { scale: 1.5 }, // Reduced scale
-                    jsPDF: { unit: 'mm', format: 'letter', orientation: 'landscape' },
+                    jsPDF: { unit: 'mm', format: 'a3', orientation: 'landscape' },
                 })
                 .toPdf()
                 .get('pdf')
