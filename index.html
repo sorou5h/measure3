@@ -83,7 +83,7 @@
                 box-sizing: border-box;
                 border: none;
                 /* border-bottom: 1px solid #ccc; Add an underline */
-                width: 100.8%;
+                width: 100.94%;
                 background-color: transparent; /* Transparent background */
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 font-size: 16px;
@@ -99,6 +99,14 @@
                 padding-top: 5px;;
                 display: block;
                 /*font-weight: bold;*/
+            }
+
+            .lablecx {
+                margin-bottom: 8px;
+                padding-top: 5px;;
+                display: block;
+                border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
             }
 
             .customerInfo {
@@ -199,39 +207,39 @@
             <!-- <h2>Customer Information</h2> -->
             <section>
 
-                <div class="customerInfo" style=" border-bottom: 1px solid #ccc; ">
-                    <label for="room">Customer Name:</label>
+                <div class="customerInfo">
+                    <label for="room" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Name:</label>
                     <input type="text" class="room" name="customerName" id="customerName" required>
                 </div>
 
-                <div class="customerInfo" style="border-bottom: 1px solid #ccc;">
-                    <label for="quantity">Order Number:</label>
+                <div class="customerInfo">
+                    <label for="quantity" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Order Number:</label>
                     <input type="text" class="quantity" name="orderNumber" id="orderNumber" required>
                 </div>
 
-                <div class="customerInfo" style="border-bottom: 1px solid #ccc;">
-                    <label for="mount">Store Number:</label>
+                <div class="customerInfo">
+                    <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Store Number:</label>
                     <input type="text" class="mount" name="storeNumber" id="storeNumber" required>
                 </div>
 
-                <div class="customerInfo" style="border-bottom: 1px solid #ccc;">
-                    <label for="width">Date:</label>
+                <div class="customerInfo">
+                    <label for="width" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Date:</label>
                     <input type="date" class="width" name="date" id="date" required>
                 </div>
 
-                <div class="customerInfo" style="border-bottom: 1px solid #ccc;">
-                    <label for="mount">Take Down</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required>
+                <div class="customerInfo">
+                    <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Wall</label>
+                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="0">
                 </div>
 
-                <div class="customerInfo" style="border-bottom: 1px solid #ccc;">
-                    <label for="mount">Hallaway</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required>
+                <div class="customerInfo">
+                    <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Take Down</label>
+                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="0">
                 </div>
 
-                <div class="customerInfo" style="border-bottom: 1px solid #ccc;">
-                    <label for="mount">Concrete</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required>
+                <div class="customerInfo">
+                    <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Hallaway</label>
+                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="0">
                 </div>
             </section>
 
@@ -273,12 +281,12 @@
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px); ">
-                    <label for="width" style="border-bottom: 1px solid #ccc;">Window Width:</label>
+                    <label for="width" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Window Width:</label>
                     <input type="text" class="width" name="width" id="width1" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
-                    <label for="height"style="border-bottom: 1px solid #ccc;" >Window Height:</label>
+                    <label for="height"style="border-bottom: 1px solid #ccc; padding-bottom: 5px;" >Window Height:</label>
                     <input type="text" class="height" name="height" id="height1" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
@@ -288,12 +296,12 @@
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
-                    <label for="bwidth" style="border-bottom: 1px solid #ccc;">Exact Width:</label>
+                    <label for="bwidth" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Exact Width:</label>
                     <input type="text" class="bwidth" name="bwidth" id="width2" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
-                    <label for="bheight" style="border-bottom: 1px solid #ccc;">Exact Height:</label>
+                    <label for="bheight" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Exact Height:</label>
                     <input type="text" class="bheight" name="bheight" id="height2" required oninput="convertToFraction(this)" placeholder="0">
                 </div>
         
@@ -545,22 +553,23 @@
             }
 
             function clearWindowInfo() {
-                // Display a confirmation prompt
-                const confirmed = confirm("Are you sure you want to clear?");
-    
-                if (confirmed) {
-                // Clear window information fields
-                    const windowSections = document.querySelectorAll('.windowInfoSection');
-                    windowSections.forEach((windowSection, index) => {
-                        const inputFields = windowSection.querySelectorAll('input, select');
-                        inputFields.forEach((field) => {
-                            field.value = '';
-                        });
-                    });
-                } else {
-                    // User clicked 'Cancel,' do nothing
-                }
-            }
+    // Display a confirmation prompt
+    const confirmed = confirm("Are you sure you want to clear?");
+
+    if (confirmed) {
+        // Clear window information fields in all sections
+        const windowSections = document.querySelectorAll('.window-container');
+        windowSections.forEach((windowSection) => {
+            const inputFields = windowSection.querySelectorAll('input, select');
+            inputFields.forEach((field) => {
+                field.value = '';
+            });
+        });
+    } else {
+        // User clicked 'Cancel,' do nothing
+    }
+}
+
             
             function createCommentSection() {
                 // Check if the comment section already exists
