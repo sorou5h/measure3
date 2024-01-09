@@ -465,7 +465,10 @@
                     // intallerID: document.getElementById('intallerID').value,
                     // intallerName: document.getElementById('intallerName').value,
                 };
-
+                const roomElement = document.getElementById(`room${windowSectionCounter}`);
+    if (roomElement) {
+        roomElement.value = roomElement.value.toUpperCase();
+    }
                 const windowDataList = [];
                 const windowSections = document.querySelectorAll('windowInfoSection');
                 windowSections.forEach((windowSection, index) => {
