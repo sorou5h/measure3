@@ -190,6 +190,22 @@
                 padding-right: 17px;
             }
 
+            .windowInfoSection {
+    position: relative;
+}
+
+.windowInfoSection .section-number {
+    position: absolute;
+    top: 5px;
+    left: 5px; /* Adjust the position to the top-left corner */
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.windowInfoSection .room {
+    padding-left: 30px; /* Add some left padding to make room for the counter */
+}
+
         </style>
     </head>
     <body>
@@ -246,10 +262,11 @@
             <!-- Window Information Section (Dynamic) -->
             <h2> </h2>
             <section class="window-container">
-                <span class="section-number">1</span>
+                
                 <div class="windowInfoSection window-info" style="width: calc(100% - 5px); border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; border-right: 1px solid #ccc;">
                     <!-- <label for="room">ROOM:</label> -->
-                    <input type="text" class="room" name="room" id="room1" style="background-color: #D3E6FF; font-weight: bold; padding-bottom: 10px; padding-top: 10px;  border-left: 1px solid #ccc;" required>
+                    <input type="text" class="room" name="room" id="room1" style="text-transform: uppercase; background-color: #D3E6FF; font-weight: bold; padding-bottom: 10px; padding-top: 10px;  border-left: 1px solid #ccc;" required>
+                    <span class="section-number">1</span>
                 </div>
 
                 <div class="windowInfoBottom" style="width: calc(10% - 60px);">
@@ -453,7 +470,7 @@
                 const windowSections = document.querySelectorAll('windowInfoSection');
                 windowSections.forEach((windowSection, index) => {
                     // Add a check for null before accessing properties
-                    const roomElement = windowSection.querySelector('room');
+                    const roomElement = windowSection.querySelector('input[name="room"]');
                     const quantityElement = windowSection.querySelector('quantity');
                     const mountElement = windowSection.querySelector('mount');
                     const widthElement = windowSection.querySelector('width');
