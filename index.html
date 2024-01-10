@@ -265,7 +265,7 @@
                 
                 <div class="windowInfoSection window-info" style="width: calc(100% - 5px); border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; border-right: 1px solid #ccc;">
                     <!-- <label for="room">ROOM:</label> -->
-                    <input type="text" class="room" name="room" id="room1" style="text-transform: uppercase; background-color: #D3E6FF; font-weight: bold; padding-bottom: 10px; padding-top: 10px;  border-left: 1px solid #ccc;" required>
+                    <input type="text" class="room" name="room" id="room1" style="text-transform: uppercase; background-color: #D3E6FF; font-weight: bold; padding-bottom: 10px; padding-top: 10px;  border-left: 1px solid #ccc;" required placeholder="room">
                     <span class="section-number">1</span>
                 </div>
 
@@ -466,9 +466,9 @@
                     // intallerName: document.getElementById('intallerName').value,
                 };
                 const roomElement = document.getElementById(`room${windowSectionCounter}`);
-    if (roomElement) {
-        roomElement.value = roomElement.value.toUpperCase();
-    }
+                if (roomElement) {
+                    roomElement.value = roomElement.value.toUpperCase();
+                }
                 const windowDataList = [];
                 const windowSections = document.querySelectorAll('windowInfoSection');
                 windowSections.forEach((windowSection, index) => {
@@ -573,23 +573,21 @@
             }
 
             function clearWindowInfo() {
-    // Display a confirmation prompt
-    const confirmed = confirm("Are you sure you want to clear?");
-
-    if (confirmed) {
-        // Clear window information fields in all sections
-        const windowSections = document.querySelectorAll('.window-container');
-        windowSections.forEach((windowSection) => {
-            const inputFields = windowSection.querySelectorAll('input, select');
-            inputFields.forEach((field) => {
-                field.value = '';
-            });
-        });
-    } else {
-        // User clicked 'Cancel,' do nothing
-    }
-}
-
+                // Display a confirmation prompt
+                const confirmed = confirm("Are you sure you want to clear?");
+                if (confirmed) {
+                    // Clear window information fields in all sections
+                    const windowSections = document.querySelectorAll('.window-container');
+                    windowSections.forEach((windowSection) => {
+                        const inputFields = windowSection.querySelectorAll('input, select');
+                            inputFields.forEach((field) => {
+                                field.value = '';
+                            });
+                        });
+                    } else {
+                    // User clicked 'Cancel,' do nothing
+                }
+            }  
             
             function createCommentSection() {
                 // Check if the comment section already exists
@@ -633,32 +631,43 @@
             }
             
             function removeWindowSection() {
-                // Select all window sections
-                const windowSections = document.querySelectorAll('.window-container');
+    // Select all window sections
+    const windowSections = document.querySelectorAll('.window-container');
 
-                // Check if there's more than one section left
-                if (windowSections.length > 1) {
-                // Remove the last window section (from the bottom)
-                    const lastWindowSection = windowSections[windowSections.length - 1];
-                    lastWindowSection.remove();
+    // Check if there's more than one section left
+    if (windowSections.length > 1) {
+        // Display a confirmation prompt
+        const confirmation = confirm('Are you sure you want to remove the last window section?');
+        
+        if (confirmation) {
+            // Remove the last window section (from the bottom)
+            const lastWindowSection = windowSections[windowSections.length - 1];
+            lastWindowSection.remove();
 
-                    // Decrement the counter
-                    windowSectionCounter--;
-                } else {
-                    console.log('Cannot remove the last section.');
-                }
-            }
-            function removeCommentSection() {
-                // Select the comment section
-                const commentSection = document.getElementById('commentSection');
+            // Decrement the counter
+            windowSectionCounter--;
+        }
+    } else {
+        console.log('Cannot remove the last section.');
+    }
+}
 
-                if (commentSection) {
-                    // Remove the comment section
-                    commentSection.remove();
-                } else {
-                    console.log('Comment section does not exist.');
-                }
-            }
+function removeCommentSection() {
+    // Select the comment section
+    const commentSection = document.getElementById('commentSection');
+
+    if (commentSection) {
+        // Display a confirmation prompt
+        const confirmation = confirm('Are you sure you want to remove the comment section?');
+        
+        if (confirmation) {
+            // Remove the comment section
+            commentSection.remove();
+        }
+    } else {
+        console.log('Comment section does not exist.');
+    }
+}
 
     		var today = new Date().toLocaleDateString('en-CA'); // You can change 'en-CA' to your preferred locale
     		// Set the value of the date input field to today's date
