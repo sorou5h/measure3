@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -67,9 +65,9 @@
                 width: 100%;
                 text-align: center;
                 margin-bottom: 15px;
-                font-size: 20px;
+                font-size: 18px;
                 /*margin-left: 25px;*/
-                color: #3498db;
+                color: #09f;
             }
 
             .form-group {
@@ -117,30 +115,31 @@
             button {
                 padding: 10px;
                 cursor: pointer;
-                background-color: #3498db;
+                background-color: #3498dbb6;
                 color: #fff;
                 border: none;
-                border-radius: 10px;
+                border-radius: 25px;
                 margin-top: 10px;
                 margin-left: 9px;
             }
+
             button:hover {
-                background-color: #616CFC; /* Darker green */
+                background-color: #616bfce9; /* Darker green */
                 transform: scale(1.05); /* Scale the button slightly on hover */
             }
 
             .button2 {
                 padding: 10px;
                 cursor: pointer;
-                background-color: #db3437;
+                background-color: #db3437a1;
                 color: #fff;
                 border: none;
-                border-radius: 10px;
+                border-radius: 25px;
                 margin-top: 10px;
                 margin-left: 9px;
             }
             .button2:hover {
-                background-color: #fc6170; /* Darker green */
+                background-color: #fc6170ec; /* Darker green */
                 transform: scale(1.05); /* Scale the button slightly on hover */
             }
             
@@ -286,13 +285,13 @@
                     <label for="type" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Type:</label>
                     <select class="type" name="type" id="type1" required>
                         <option value="mt6"> </option>
-                        <option value="Roller">Roller</option>
+                        <option value="Roller">Roller Shade</option>
                         <option value="Cascade">Cascade</option>
-                        <option value="Horizantal1">1" Alum</option>
-                        <option value="Horizantal2">2" Horiz</option>
+                        <option value="Horizantal1">1" Aluminium</option>
+                        <option value="Horizantal2">2" Horizantal</option>
                         <option value="Vertical">Vertical</option>
                         <option value="Romen">Romen</option>
-                        <option value="ww">Woven</option>
+                        <option value="ww">Woven Wood</option>
                     </select>
                 </div>
 
@@ -644,48 +643,42 @@
             }
             
             function removeWindowSection() {
-    // Select all window sections
-    const windowSections = document.querySelectorAll('.window-container');
+                // Select all window sections
+                const windowSections = document.querySelectorAll('.window-container');
+                // Check if there's more than one section left
+                if (windowSections.length > 1) {
+                    // Display a confirmation prompt
+                    const confirmation = confirm('Are you sure you want to remove the last window section?');
+                    if (confirmation) {
+                        // Remove the last window section (from the bottom)
+                        const lastWindowSection = windowSections[windowSections.length - 1];
+                        lastWindowSection.remove();
+                        // Decrement the counter
+                        windowSectionCounter--;
+                    }
+                } else {
+                    console.log('Cannot remove the last section.');
+                }
+            }
 
-    // Check if there's more than one section left
-    if (windowSections.length > 1) {
-        // Display a confirmation prompt
-        const confirmation = confirm('Are you sure you want to remove the last window section?');
-        
-        if (confirmation) {
-            // Remove the last window section (from the bottom)
-            const lastWindowSection = windowSections[windowSections.length - 1];
-            lastWindowSection.remove();
-
-            // Decrement the counter
-            windowSectionCounter--;
-        }
-    } else {
-        console.log('Cannot remove the last section.');
-    }
-}
-
-function removeCommentSection() {
-    // Select the comment section
-    const commentSection = document.getElementById('commentSection');
-
-    if (commentSection) {
-        // Display a confirmation prompt
-        const confirmation = confirm('Are you sure you want to remove the comment section?');
-        
-        if (confirmation) {
-            // Remove the comment section
-            commentSection.remove();
-        }
-    } else {
-        console.log('Comment section does not exist.');
-    }
-}
+            function removeCommentSection() {
+                // Select the comment section
+                const commentSection = document.getElementById('commentSection');
+                if (commentSection) {
+                    // Display a confirmation prompt
+                    const confirmation = confirm('Are you sure you want to remove the comment section?');
+                    if (confirmation) {
+                        // Remove the comment section
+                        commentSection.remove();
+                    }
+                } else {
+                    console.log('Comment section does not exist.');
+                }
+            }
 
     		var today = new Date().toLocaleDateString('en-CA'); // You can change 'en-CA' to your preferred locale
     		// Set the value of the date input field to today's date
     		document.getElementById('date').value = today;
-            
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
