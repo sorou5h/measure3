@@ -106,7 +106,7 @@
                 padding-top: 5px;;
                 display: block;
                 border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
+                padding-bottom: 5px;
             }
 
             .customerInfo {
@@ -129,6 +129,21 @@
                 transform: scale(1.05); /* Scale the button slightly on hover */
             }
 
+            .button2 {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #db3437;
+                color: #fff;
+                border: none;
+                border-radius: 10px;
+                margin-top: 10px;
+                margin-left: 9px;
+            }
+            .button2:hover {
+                background-color: #fc6170; /* Darker green */
+                transform: scale(1.05); /* Scale the button slightly on hover */
+            }
+            
             @media print {
                 body {
                     background-color: #fff;
@@ -191,20 +206,20 @@
             }
 
             .windowInfoSection {
-    position: relative;
-}
+                position: relative;
+            }
 
-.windowInfoSection .section-number {
-    position: absolute;
-    top: 5px;
-    left: 5px; /* Adjust the position to the top-left corner */
-    font-weight: bold;
-    font-size: 14px;
-}
+            .windowInfoSection .section-number {
+                position: absolute;
+                top: 5px;
+                left: 5px; /* Adjust the position to the top-left corner */
+                font-weight: bold;
+                font-size: 14px;
+            }
 
-.windowInfoSection .room {
-    padding-left: 30px; /* Add some left padding to make room for the counter */
-}
+            .windowInfoSection .room {
+                padding-left: 30px; /* Add some left padding to make room for the counter */
+            }
 
         </style>
     </head>
@@ -213,14 +228,12 @@
             <button type="button" onclick="saveData()" id="saveButton">Save</button>
             <button type="button" id="addWindowButton" onclick="addWindowSection()">Add Window</button>
             <button type="button" onclick="createCommentSection()" id="commentButton">Add Comment</button>
-            <button type="button" id="removeWindowButton" onclick="removeWindowSection()">Remove Window</button>
-            <button type="button" id="removeCommentButton" onclick="removeCommentSection()">Remove Comment</button>
-            <button type="button" onclick="clearWindowInfo()" id="clearButton">Clear</button>
+            <button class="button2" id="removeWindowButton" onclick="removeWindowSection()">Remove Window</button>
+            <button class="button2" id="removeCommentButton" onclick="removeCommentSection()">Remove Comment</button>
+            <button class="button2" type="button" onclick="clearWindowInfo()" id="clearButton">Clear</button>
         </div>
         <form>
-            <!-- Customer Information Section -->
             <h3>Soroush - I0344</h3>
-            <!-- <h2>Customer Information</h2> -->
             <section>
 
                 <div class="customerInfo">
