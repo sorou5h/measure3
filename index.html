@@ -363,21 +363,18 @@
                     </select>
                 </div>
         
-                <div class="windowInfoBottom" style="width: calc(3% - 1px); ">
+                <div class="windowInfoBottom" style="width: calc(3% - 1px);">
                     <label for="wall" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Concrete:</label>
-                    <select class="wall" name="wall" id="wall1" required>
-                        <option value="DW"> </option>
-                        <option value="Concrete">YES</option>
-                    </select>
+                    <input type="checkbox" class="wall" name="wall" id="wall1" value="Concrete" onclick="updateWallCount(this)" />
                 </div>
+                
         
                 <div class="windowInfoBottom" style="width: calc(3% - 1px);">
                     <label for="td" style="border-bottom: 1px solid #fff; padding-bottom: 5px">T.D:</label>
-                    <select class="td" name="td" id="td1" required>
-                        <option value="mt4"> </option>
-                        <option value="yes">YES</option>
-                    </select>
+                    <input type="checkbox" class="td" name="td" id="td1" value="yes" onclick="updateTDCount(this)" />
                 </div>
+                
+                
         
                 <div class="windowInfoBottom" style="width: calc(15% - 60px);">
                     <label for="comm" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Comment:</label>
@@ -388,6 +385,35 @@
         
         <script>
             let windowSectionCounter = 1; // Initialize the counter
+
+            // Function to update the "Concrete" count in the customer section
+            function updateWallCount(checkbox) {
+                // Get the Concrete input field in the customer section
+                const wallInput = document.getElementById('wall');
+
+                // Check if the checkbox is checked or unchecked
+                if (checkbox.checked) {
+                    // If checked, increment the count in the "Concrete" field
+                    wallInput.value = parseInt(wallInput.value || 0) + 1;
+                } else {
+                    // If unchecked, decrement the count in the "Concrete" field (if greater than 0)
+                    wallInput.value = Math.max(parseInt(wallInput.value || 0) - 1, 0);
+                }
+            }
+    
+            function updateTDCount(checkbox) {
+                // Get the TD input field in the customer section
+                const tdInput = document.getElementById('td');
+
+                // Check if the checkbox is checked or unchecked
+                if (checkbox.checked) {
+                    // If checked, increment the count in the "Take Down" field
+                    tdInput.value = parseInt(tdInput.value || 0) + 1;
+                } else {
+                    // If unchecked, decrement the count in the "Take Down" field (if greater than 0)
+                    tdInput.value = Math.max(parseInt(tdInput.value || 0) - 1, 0);
+                }
+            }
 
             function convertToFraction(input) {
             // Get the input value
@@ -444,24 +470,34 @@
 
                 if (lastWindowSection) {
                     const newWindowSection = lastWindowSection.cloneNode(true);
+
                     // Increment the counter for the next window section
                     windowSectionCounter++;
+
                     // Update the section number in the cloned window section
                     const sectionNumberElement = newWindowSection.querySelector('.section-number');
                     if (sectionNumberElement) {
                         sectionNumberElement.textContent = windowSectionCounter;
                     }
-                     // Reset input field values in the cloned section (if needed)
+
+                    // Reset input field values in the cloned section
                     newWindowSection.querySelectorAll('input, select').forEach(element => {
-                    element.value = '';
+                        element.value = '';
+
+                        // Reset checkbox states
+                        if (element.type === 'checkbox') {
+                            element.checked = false;
+                        }
                     });
+
                     // Append the new window section to the form
                     document.querySelector('form').appendChild(newWindowSection);
+
                     // Show the remove button when adding sections
                     const removeWindowButton = document.getElementById('removeWindowButton');
                     removeWindowButton.style.display = 'inline-block';
                 } else {
-                        console.error('No existing window section found.');
+                    console.error('No existing window section found.');
                 }
             }
 
@@ -582,36 +618,38 @@
             }
 
             function clearWindowInfo() {
-    // Display a confirmation prompt
-    const confirmed = confirm("Are you sure you want to clear?");
-    if (confirmed) {
-        // Clear customer information fields
-        // document.getElementById('customerName').value = '';
-        // document.getElementById('orderNumber').value = '';
-        // document.getElementById('storeNumber').value = '';
-        // document.getElementById('date').value = '';
-        document.getElementById('wall').value = ''; // Clear Wall
-        document.getElementById('td').value = '';   // Clear TD
-        document.getElementById('hallaway').value = ''; // Clear Hallaway
+                // Display a confirmation prompt
+                const confirmed = confirm("Are you sure you want to clear?");
+                if (confirmed) {
+                    // Clear customer information fields
+                    // document.getElementById('customerName').value = '';
+                    // document.getElementById('orderNumber').value = '';
+                    // document.getElementById('storeNumber').value = '';
+                    // document.getElementById('date').value = '';
+                    document.getElementById('wall').value = ''; // Clear Wall
+                    document.getElementById('td').value = '';   // Clear TD
+                    document.getElementById('hallaway').value = ''; // Clear Hallaway
+                    document.getElementById('wall1').checked = false; // Clear Concrete checkbox
+                    document.getElementById('td1').checked = false;   // Clear T.D. checkbox
 
-        // Clear window information fields in all sections
-        const windowSections = document.querySelectorAll('.window-container');
-        windowSections.forEach((windowSection) => {
-            const inputFields = windowSection.querySelectorAll('input, select');
-            inputFields.forEach((field) => {
-                field.value = '';
-            });
-        });
+                    // Clear window information fields in all sections
+                    const windowSections = document.querySelectorAll('.window-container');
+                    windowSections.forEach((windowSection) => {
+                        const inputFields = windowSection.querySelectorAll('input, select');
+                        inputFields.forEach((field) => {
+                            field.value = '';
+                        });
+                    });
 
-        // Clear comments if the comment section exists
-        const commentTextarea = document.getElementById('comments');
-        if (commentTextarea) {
-            commentTextarea.value = '';
-        }
-    } else {
-        // User clicked 'Cancel,' do nothing
-    }
-}
+                    // Clear comments if the comment section exists
+                    const commentTextarea = document.getElementById('comments');
+                    if (commentTextarea) {
+                        commentTextarea.value = '';
+                    }
+                } else {
+                    // User clicked 'Cancel,' do nothing
+                }
+            }
             
             function createCommentSection() {
                 // Check if the comment section already exists
@@ -655,8 +693,9 @@
             }
             
             function removeWindowSection() {
-                // Select all window sectionsx
+                // Select all window sections
                 const windowSections = document.querySelectorAll('.window-container');
+    
                 // Check if there's more than one section left
                 if (windowSections.length > 1) {
                     // Display a confirmation prompt
@@ -664,9 +703,23 @@
                     if (confirmation) {
                         // Remove the last window section (from the bottom)
                         const lastWindowSection = windowSections[windowSections.length - 1];
+
+                        // Decrement the "Concrete" count if the checkbox is checked
+                        const wallCheckbox = lastWindowSection.querySelector('.wall');
+                        if (wallCheckbox && wallCheckbox.checked) {
+                            const wallInput = document.getElementById('wall');
+                            wallInput.value = Math.max(parseInt(wallInput.value || 0) - 1, 0);
+                        }
+
+                        // Decrement the "T.D." count if the checkbox is checked
+                        const tdCheckbox = lastWindowSection.querySelector('.td');
+                        if (tdCheckbox && tdCheckbox.checked) {
+                            const tdInput = document.getElementById('td');
+                            tdInput.value = Math.max(parseInt(tdInput.value || 0) - 1, 0);
+                        }
+
+                        // Remove the last window section
                         lastWindowSection.remove();
-                        // Decrement the counter
-                        windowSectionCounter--;
                     }
                 } else {
                     console.log('Cannot remove the last section.');
@@ -687,10 +740,6 @@
                     console.log('Comment section does not exist.');
                 }
             }
-
-
-
-            
 
     		var today = new Date().toLocaleDateString('en-CA');
     		document.getElementById('date').value = today;
