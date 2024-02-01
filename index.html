@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>Measurement Sheet</title>
         <style>
             body {
@@ -17,11 +18,10 @@
             form {
                 width: 97%;
                 margin: 10px auto;
-                background-color: #fff;
+                background-color: rgba(255,255,255,0.7);
                 padding: 15px;
-                border-radius: 10px;
+                border-radius: 15px;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                
             }
 
             section {
@@ -67,7 +67,7 @@
                 margin-bottom: 15px;
                 font-size: 18px;
                 /*margin-left: 25px;*/
-                color: #09f;
+                color: rgb(42, 23, 255);
             }
 
             .form-group {
@@ -89,6 +89,7 @@
                 padding-bottom: 10px;
                 font-size: 15px;
                 font-weight: bold;
+                color:rgb(57, 57, 255);
             }
 
             /* Style the label elements */
@@ -256,18 +257,18 @@
                 </div>
 
                 <div class="customerInfo">
-                    <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Wall</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="0">
+                    <label for="wall" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Concrete</label>
+                    <input type="text" class="wall" name="wall" id="wall" required placeholder="0">
                 </div>
 
                 <div class="customerInfo">
-                    <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Take Down</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="0">
+                    <label for="td" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Take Down</label>
+                    <input type="text" class="td" name="td" id="td" required placeholder="0">
                 </div>
 
                 <div class="customerInfo">
-                    <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Hallaway</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="0">
+                    <label for="hallaway" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Hallaway</label>
+                    <input type="text" class="hallaway" name="hallaway" id="hallaway" required placeholder="0">
                 </div>
             </section>
 
@@ -277,7 +278,7 @@
                 
                 <div class="windowInfoSection window-info" style="width: calc(100% - 5px); border-bottom: 1px solid #ccc; border-top: 1px solid #ccc; border-right: 1px solid #ccc;">
                     <!-- <label for="room">ROOM:</label> -->
-                    <input type="text" class="room" name="room" id="room1" style="text-transform: uppercase; background-color: #D3E6FF; font-weight: bold; padding-bottom: 10px; padding-top: 10px;  border-left: 1px solid #ccc;" required placeholder="room">
+                    <input type="text" class="room" name="room" id="room1" style="text-transform: uppercase; background-color: #D3E6FF; font-weight: bold; padding-bottom: 10px; padding-top: 10px;  border-left: 1px solid #ccc;" required placeholder="ROOM">
                     <span class="section-number">1</span>
                 </div>
 
@@ -285,13 +286,13 @@
                     <label for="type" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Type:</label>
                     <select class="type" name="type" id="type1" required>
                         <option value="mt6"> </option>
-                        <option value="Roller">Roller Shade</option>
+                        <option value="Roller">Roller</option>
                         <option value="Cascade">Cascade</option>
-                        <option value="Horizantal1">1" Aluminium</option>
-                        <option value="Horizantal2">2" Horizantal</option>
+                        <option value="Horizantal1">1" Alum</option>
+                        <option value="Horizantal2">2" Horiz</option>
                         <option value="Vertical">Vertical</option>
                         <option value="Romen">Romen</option>
-                        <option value="ww">Woven Wood</option>
+                        <option value="ww">Woven</option>
                     </select>
                 </div>
 
@@ -363,11 +364,10 @@
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(3% - 1px); ">
-                    <label for="wall" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Wall:</label>
+                    <label for="wall" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Concrete:</label>
                     <select class="wall" name="wall" id="wall1" required>
                         <option value="DW"> </option>
-                        <option value="Concrete">C</option>
-                        <option value="Metal">M</option>
+                        <option value="Concrete">YES</option>
                     </select>
                 </div>
         
@@ -375,7 +375,7 @@
                     <label for="td" style="border-bottom: 1px solid #fff; padding-bottom: 5px">T.D:</label>
                     <select class="td" name="td" id="td1" required>
                         <option value="mt4"> </option>
-                        <option value="yes">Y</option>
+                        <option value="yes">YES</option>
                     </select>
                 </div>
         
@@ -436,9 +436,6 @@
                 }
                 return `${roundedDecimal.toFixed(3)}`; // Default to decimal inches if no matching fraction is found
             }
-
-            // Remove the second declaration of windowSectionCounter
-            // let windowSectionCounter = 1; // Initialize the counter to 1
 
             function addWindowSection() {
                 // Clone the entire window information section and append it to the form
@@ -559,10 +556,10 @@
                     const totalPages = pdf.internal.getNumberOfPages();
                     pdf.setFontSize(10); // Set the font size for the page numbers
                     pdf.setTextColor(150); // Set the text color for the page numbers
-                        for (let i = 1; i <= totalPages; i++) {
-                            pdf.setPage(i);
-                            pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() - 30, pdf.internal.pageSize.getHeight() - 5);
-                        }
+                    for (let i = 1; i <= totalPages; i++) {
+                        pdf.setPage(i);
+                        pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() - 30, pdf.internal.pageSize.getHeight() - 5);
+                    }
                 })
                 .save()
                 .then(() => {
@@ -585,21 +582,36 @@
             }
 
             function clearWindowInfo() {
-                // Display a confirmation prompt
-                const confirmed = confirm("Are you sure you want to clear?");
-                if (confirmed) {
-                    // Clear window information fields in all sections
-                    const windowSections = document.querySelectorAll('.window-container');
-                    windowSections.forEach((windowSection) => {
-                        const inputFields = windowSection.querySelectorAll('input, select');
-                            inputFields.forEach((field) => {
-                                field.value = '';
-                            });
-                        });
-                    } else {
-                    // User clicked 'Cancel,' do nothing
-                }
-            }  
+    // Display a confirmation prompt
+    const confirmed = confirm("Are you sure you want to clear?");
+    if (confirmed) {
+        // Clear customer information fields
+        // document.getElementById('customerName').value = '';
+        // document.getElementById('orderNumber').value = '';
+        // document.getElementById('storeNumber').value = '';
+        // document.getElementById('date').value = '';
+        document.getElementById('wall').value = ''; // Clear Wall
+        document.getElementById('td').value = '';   // Clear TD
+        document.getElementById('hallaway').value = ''; // Clear Hallaway
+
+        // Clear window information fields in all sections
+        const windowSections = document.querySelectorAll('.window-container');
+        windowSections.forEach((windowSection) => {
+            const inputFields = windowSection.querySelectorAll('input, select');
+            inputFields.forEach((field) => {
+                field.value = '';
+            });
+        });
+
+        // Clear comments if the comment section exists
+        const commentTextarea = document.getElementById('comments');
+        if (commentTextarea) {
+            commentTextarea.value = '';
+        }
+    } else {
+        // User clicked 'Cancel,' do nothing
+    }
+}
             
             function createCommentSection() {
                 // Check if the comment section already exists
@@ -643,7 +655,7 @@
             }
             
             function removeWindowSection() {
-                // Select all window sections
+                // Select all window sectionsx
                 const windowSections = document.querySelectorAll('.window-container');
                 // Check if there's more than one section left
                 if (windowSections.length > 1) {
@@ -676,12 +688,14 @@
                 }
             }
 
-    		var today = new Date().toLocaleDateString('en-CA'); // You can change 'en-CA' to your preferred locale
-    		// Set the value of the date input field to today's date
+
+
+            
+
+    		var today = new Date().toLocaleDateString('en-CA');
     		document.getElementById('date').value = today;
+            
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
 </html>
-
-
