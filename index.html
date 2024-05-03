@@ -833,8 +833,9 @@ function deleteLast() {
 // Function to handle touch start event
 function handleTouchStart(e) {
     isDragging = true;
-    touchStartX = e.touches[0].clientX - parseFloat(getComputedStyle(customKeyboard).left);
-    touchStartY = e.touches[0].clientY - parseFloat(getComputedStyle(customKeyboard).top);
+    var keyboardRect = customKeyboard.getBoundingClientRect();
+    touchStartX = e.touches[0].clientX - keyboardRect.left;
+    touchStartY = e.touches[0].clientY - keyboardRect.top;
 }
 
 // Function to handle touch move event
@@ -847,7 +848,6 @@ function handleTouchMove(e) {
         customKeyboard.style.top = newY + 'px';
     }
 }
-
 // Function to handle touch end event
 function handleTouchEnd() {
     isDragging = false;
