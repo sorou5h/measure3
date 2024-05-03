@@ -800,61 +800,62 @@
             }
 
             
-            var isDragging = false;
-        var offsetX, offsetY;
+         var isDragging = false;
+var offsetX, offsetY;
 
-        function showKeyboard(input) {
-            var keyboard = document.getElementById('customKeyboard');
-            keyboard.style.display = 'block';
-            keyboard.currentInput = input;
-        }
+function showKeyboard(input) {
+    var keyboard = document.getElementById('customKeyboard');
+    keyboard.style.display = 'block';
+    keyboard.currentInput = input;
+}
 
-        function hideKeyboard() {
-            var keyboard = document.getElementById('customKeyboard');
-            keyboard.style.display = 'none';
-        }
+function hideKeyboard() {
+    var keyboard = document.getElementById('customKeyboard');
+    keyboard.style.display = 'none';
+}
 
-        function insertValue(value) {
-            var input = document.getElementById('customKeyboard').currentInput;
-            if (input) {
-                var currentValue = input.value;
-                input.value = currentValue + value;
-            }
-        }
+function insertValue(value) {
+    var input = document.getElementById('customKeyboard').currentInput;
+    if (input) {
+        var currentValue = input.value;
+        input.value = currentValue + value;
+    }
+}
 
-        function deleteLast() {
-            var input = document.getElementById('customKeyboard').currentInput;
-            if (input) {
-                var currentValue = input.value;
-                input.value = currentValue.slice(0, -1);
-            }
-        }
+function deleteLast() {
+    var input = document.getElementById('customKeyboard').currentInput;
+    if (input) {
+        var currentValue = input.value;
+        input.value = currentValue.slice(0, -1);
+    }
+}
 
-        // Function to handle mouse down event
-        function handleMouseDown(e) {
-            isDragging = true;
-            offsetX = e.clientX - parseFloat(getComputedStyle(customKeyboard).left);
-            offsetY = e.clientY - parseFloat(getComputedStyle(customKeyboard).top);
-        }
+// Function to handle touch start event
+function handleTouchStart(e) {
+    isDragging = true;
+    offsetX = e.touches[0].clientX - parseFloat(getComputedStyle(customKeyboard).left);
+    offsetY = e.touches[0].clientY - parseFloat(getComputedStyle(customKeyboard).top);
+}
 
-        // Function to handle mouse move event
-        function handleMouseMove(e) {
-            if (isDragging) {
-                customKeyboard.style.left = (e.clientX - offsetX) + 'px';
-                customKeyboard.style.top = (e.clientY - offsetY) + 'px';
-            }
-        }
+// Function to handle touch move event
+function handleTouchMove(e) {
+    if (isDragging) {
+        customKeyboard.style.left = (e.touches[0].clientX - offsetX) + 'px';
+        customKeyboard.style.top = (e.touches[0].clientY - offsetY) + 'px';
+    }
+}
 
-        // Function to handle mouse up event
-        function handleMouseUp() {
-            isDragging = false;
-        }
+// Function to handle touch end event
+function handleTouchEnd() {
+    isDragging = false;
+}
 
-        // Event listeners for mouse events
-        var customKeyboard = document.getElementById('customKeyboard');
-        customKeyboard.addEventListener('mousedown', handleMouseDown);
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
+// Event listeners for touch events
+var customKeyboard = document.getElementById('customKeyboard');
+customKeyboard.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('touchmove', handleTouchMove);
+document.addEventListener('touchend', handleTouchEnd);
+
     	
         var today = new Date().toLocaleDateString('en-CA');
     	document.getElementById('date').value = today;
