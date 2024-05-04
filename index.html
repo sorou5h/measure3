@@ -845,6 +845,35 @@
         window.addEventListener('resize', adjustWindowContainerPadding);
 
 
+
+            // Function to handle focus on input fields
+        function focusInputField(inputFieldId) {
+            // Remove focus from all input fields
+            var inputFields = document.querySelectorAll('input[type="text"]');
+            inputFields.forEach(function(input) {
+                input.blur();
+            });
+
+            // Focus on the specified input field
+            var inputField = document.getElementById(inputFieldId);
+            inputField.focus();
+        }
+
+        // Event listeners for keyboard buttons
+        document.getElementById('customKeyboard').addEventListener('click', function(event) {
+            if (event.target.tagName === 'BUTTON') {
+                var buttonValue = event.target.textContent;
+                var currentInputField = document.activeElement;
+
+                // Insert the button value into the focused input field
+                if (currentInputField && currentInputField.tagName === 'INPUT') {
+                    var currentValue = currentInputField.value;
+                    currentInputField.value = currentValue + buttonValue;
+                }
+            }
+        });
+
+
 // ///////////////////////////////////////////////         KEYBOARD             ///////////////////////////////////////////////////////
 
             
