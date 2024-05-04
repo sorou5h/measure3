@@ -844,10 +844,13 @@
         adjustWindowContainerPadding();
         window.addEventListener('resize', adjustWindowContainerPadding);
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////               HIDE KEYBOARD           ///////////////////////////////////////////
 
             // Function to handle focus on input fields
         function focusInputField(inputFieldId) {
+            // Disable default iPad keyboard
+            document.body.focus();
+
             // Remove focus from all input fields
             var inputFields = document.querySelectorAll('input[type="text"]');
             inputFields.forEach(function(input) {
