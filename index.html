@@ -220,39 +220,6 @@
             .windowInfoSection .room {
                 padding-left: 30px; /* Add some left padding to make room for the counter */
             }
-            .keyboard {
-                display: none;
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -80%); /* Adjust the second value to increase space at the bottom */
-                width: 240px;
-                background-color: rgba(255, 255, 255, 0.7); /* Match the background color of the form */
-                border: 1px solid #ccc;
-                border-radius: 15px; /* Match the border radius of the form */
-                overflow: hidden;
-                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Match the font family of the form */
-                color: #333; /* Match the font color of the form */
-            }
-
-            .keyboard button {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                font-size: 16px;
-                border: none;
-                outline: none;
-                background-color: #3498dbb6; /* Match the background color of the buttons */
-                border-radius: 25px; /* Match the border radius of the buttons */
-                color: #fff; /* Match the font color of the buttons */
-                cursor: pointer;
-                transition: background-color 0.3s;
-            }
-
-            .keyboard button:hover {
-                background-color: #db3437a1; /* Match the hover background color of the buttons */
-            }
 
         </style>
     </head>
@@ -269,19 +236,19 @@
             <h3>Soroush - I0344</h3>
             <section>
 
-                 <div class="customerInfo">
+                <div class="customerInfo">
                     <label for="room" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Name:</label>
-                    <input type="text" class="room" name="customerName" id="customerName" required placeholder="John Doe">
+                    <input type="text" class="room" name="customerName" id="customerName" required>
                 </div>
 
                 <div class="customerInfo">
                     <label for="quantity" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Order Number:</label>
-                    <input type="text" class="quantity" name="orderNumber" id="orderNumber" required placeholder="000 000">
+                    <input type="text" class="quantity" name="orderNumber" id="orderNumber" required>
                 </div>
 
                 <div class="customerInfo">
                     <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Store Number:</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="00">
+                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required>
                 </div>
 
                 <div class="customerInfo">
@@ -345,27 +312,27 @@
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px); ">
                     <label for="width" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Window Width:</label>
-                    <input type="text" class="width" name="width" id="width1" required oninput="convertToFraction(this)" placeholder="0" placeholder="0" onfocus="showKeyboard(this)">
+                    <input type="text" class="width" name="width" id="width1" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
                     <label for="height"style="border-bottom: 1px solid #ccc; padding-bottom: 5px;" >Window Height:</label>
-                    <input type="text" class="height" name="height" id="height1" required oninput="convertToFraction(this)" placeholder="0" placeholder="0" onfocus="showKeyboard(this)">
+                    <input type="text" class="height" name="height" id="height1" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(5% - 1px);" >
                     <label for="depth" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Depth:</label>
-                    <input type="text" class="depth" name="depth" id="depth1" required placeholder="3" placeholder="0" onfocus="showKeyboard(this)">
+                    <input type="text" class="depth" name="depth" id="depth1" required placeholder="3" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
                     <label for="bwidth" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Exact Width:</label>
-                    <input type="text" class="bwidth" name="bwidth" id="width2" required oninput="convertToFraction(this)" placeholder="0" placeholder="0" onfocus="showKeyboard(this)">
+                    <input type="text" class="bwidth" name="bwidth" id="width2" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
                     <label for="bheight" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Exact Height:</label>
-                    <input type="text" class="bheight" name="bheight" id="height2" required oninput="convertToFraction(this)" placeholder="0" placeholder="0" onfocus="showKeyboard(this)">
+                    <input type="text" class="bheight" name="bheight" id="height2" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(3% - 1px);">
@@ -407,37 +374,13 @@
                     <input type="checkbox" class="td" name="td" id="td1" value="yes" onclick="updateTDCount(this)" />
                 </div>
                 
+                
+        
                 <div class="windowInfoBottom" style="width: calc(15% - 60px);">
                     <label for="comm" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Comment:</label>
                     <input type="text" class="comm" name="comm" id="comm1" required>
                 </div>
 
-                <div id="customKeyboard" class="keyboard">
-                    <div class="top-row">
-                        <button onclick="insertValue('0')">0</button>
-                        <button onclick="insertValue('1')">1</button>
-                        <button onclick="insertValue('2')">2</button>
-                        <button onclick="insertValue('3')">3</button>
-                        <button onclick="insertValue('4')">4</button>
-                        <button onclick="insertValue('5')">5</button>
-                        <button onclick="insertValue('6')">6</button>
-                        <button onclick="insertValue('7')">7</button>
-                        <button onclick="insertValue('8')">8</button>
-                        <button onclick="insertValue('9')">9</button>
-                    </div>
-                    <div class="bottom-row">
-                        <button onclick="insertValue(' 1/8')">1/8</button>
-                        <button onclick="insertValue(' 1/4')">1/4</button>
-                        <button onclick="insertValue(' 3/8')">3/8</button>
-                        <button onclick="insertValue(' 1/2')">1/2</button>
-                        <button onclick="insertValue(' 5/8')">5/8</button>
-                        <button onclick="insertValue(' 3/4')">3/4</button>
-                        <button onclick="insertValue(' 7/8')">7/8</button>
-                        <button onclick="deleteLast()">DEL</button>
-                        <button onclick="hideKeyboard()">X</button>
-                    </div>
-                </div>
-                
             </section>
         </form>
         
@@ -799,73 +742,8 @@
                 }
             }
 
-            
-        var isDragging = false;
-var touchStartX, touchStartY;
-
-function showKeyboard(input) {
-    var keyboard = document.getElementById('customKeyboard');
-    keyboard.style.display = 'block';
-    keyboard.currentInput = input;
-}
-
-function hideKeyboard() {
-    var keyboard = document.getElementById('customKeyboard');
-    keyboard.style.display = 'none';
-}
-
-function insertValue(value) {
-    var input = document.getElementById('customKeyboard').currentInput;
-    if (input) {
-        var currentValue = input.value;
-        input.value = currentValue + value;
-    }
-}
-
-function deleteLast() {
-    var input = document.getElementById('customKeyboard').currentInput;
-    if (input) {
-        var currentValue = input.value;
-        input.value = currentValue.slice(0, -1);
-    }
-}
-
-// Function to handle touch start event
-function handleTouchStart(e) {
-    isDragging = true;
-    var keyboardRect = customKeyboard.getBoundingClientRect();
-    touchStartX = e.touches[0].clientX - keyboardRect.left;
-    touchStartY = e.touches[0].clientY - keyboardRect.top;
-}
-
-// Function to handle touch move event
-function handleTouchMove(e) {
-    if (isDragging) {
-        e.preventDefault(); // Prevent the default touchmove behavior (prevents page from moving)
-
-        var newX = e.touches[0].clientX - touchStartX;
-        var newY = e.touches[0].clientY - touchStartY;
-
-        customKeyboard.style.left = newX + 'px';
-        customKeyboard.style.top = newY + 'px';
-    }
-}
-
-// Function to handle touch end event
-function handleTouchEnd() {
-    isDragging = false;
-}
-
-// Event listeners for touch events
-var customKeyboard = document.getElementById('customKeyboard');
-customKeyboard.addEventListener('touchstart', handleTouchStart);
-document.addEventListener('touchmove', handleTouchMove);
-document.addEventListener('touchend', handleTouchEnd);
-
-
-    	
-        var today = new Date().toLocaleDateString('en-CA');
-    	document.getElementById('date').value = today;
+    		var today = new Date().toLocaleDateString('en-CA');
+    		document.getElementById('date').value = today;
             
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
