@@ -883,9 +883,11 @@ inputs.forEach(function(input) {
     });
 });
 
-            var hideKeyboard = function() {
-    document.activeElement.blur();
-    $("input").blur();
+           var hideKeyboard = function() {
+    if (document.getElementById('customKeyboard').style.display === 'block') {
+        document.activeElement.blur();
+        $("input").blur();
+    }
 };
 
 // ///////////////////////////////////////////////         KEYBOARD             ///////////////////////////////////////////////////////
