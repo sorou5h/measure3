@@ -876,19 +876,15 @@
             }
         });
 
-            var inputs = document.querySelectorAll('input[type="text"]');
-inputs.forEach(function(input) {
-    input.addEventListener('focus', function() {
-        this.blur();
-    });
-});
-
-           var hideKeyboard = function() {
-    if (document.getElementById('customKeyboard').style.display === 'block') {
-        document.activeElement.blur();
-        $("input").blur();
+          var hideKeyboard = function() {
+    var customKeyboard = document.getElementById('customKeyboard');
+    if (customKeyboard.style.display === 'block') {
+        customKeyboard.style.display = 'none'; // Hide the custom keyboard
+    } else {
+        document.activeElement.blur(); // Blur the active element (this will close the default keyboard)
     }
 };
+
 
 // ///////////////////////////////////////////////         KEYBOARD             ///////////////////////////////////////////////////////
 
