@@ -883,6 +883,11 @@ inputs.forEach(function(input) {
     });
 });
 
+            var hideKeyboard = function() {
+    document.activeElement.blur();
+    $("input").blur();
+};
+
 // ///////////////////////////////////////////////         KEYBOARD             ///////////////////////////////////////////////////////
 
             
