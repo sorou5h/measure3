@@ -221,45 +221,9 @@
                 padding-left: 30px; /* Add some left padding to make room for the counter */
             }
 
-/* <////////////////////////////////////////////////////////////////////       KEYBOARD        ///////////////////////////////////////////////////////////////////////> */
-
-.keyboard {
-            display: none;
-            position:absolute;
-            bottom: 20px; /* Adjust the distance from the bottom */
-            left: 50%; /* Position it horizontally centered */
-            transform: translateX(-50%); /* Center it horizontally */
-            width: 90%; /* Adjust the width as needed */
-            max-width: 400px; /* Limit the maximum width */
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-        }
-        .keyboard button {
-            width: 20%;
-            height: 50px;
-            float: left;
-            font-size: 16px;
-            border: none;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            margin: 5px;
-            color: #333;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .keyboard button:hover {
-            background-color: #ccc;
-        }
-/* <////////////////////////////////////////////////////////////////////       KEYBOARD        ///////////////////////////////////////////////////////////////////////> */
-
         </style>
     </head>
     <body>
-
-        
         <div class="button-container" style="text-align: center;">
             <button type="button" onclick="saveData()" id="saveButton">SAVE</button>
             <button type="button" id="addWindowButton" onclick="addWindowSection()">ADD WINDOW</button>
@@ -268,7 +232,6 @@
             <button class="button2" id="removeCommentButton" onclick="removeCommentSection()">REMOVE COMMENT</button>
             <button class="button2" type="button" onclick="clearWindowInfo()" id="clearButton">CLEAR</button>
         </div>
-       
         <form>
             <h3>Soroush - I0344</h3>
             <section>
@@ -349,27 +312,27 @@
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px); ">
                     <label for="width" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Window Width:</label>
-                    <input type="text" class="width" name="width" id="width1" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)" required inputmode="none">
+                    <input type="text" class="width" name="width" id="width1" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
                     <label for="height"style="border-bottom: 1px solid #ccc; padding-bottom: 5px;" >Window Height:</label>
-                    <input type="text" class="height" name="height" id="height1" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)" required inputmode="none">
+                    <input type="text" class="height" name="height" id="height1" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(5% - 1px);" >
                     <label for="depth" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Depth:</label>
-                    <input type="text" class="depth" name="depth" id="depth1" required placeholder="3" onfocus="showKeyboard(this)" required inputmode="none">
+                    <input type="text" class="depth" name="depth" id="depth1" required placeholder="3" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
                     <label for="bwidth" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Exact Width:</label>
-                    <input type="text" class="bwidth" name="bwidth" id="width2" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)" required inputmode="none">
+                    <input type="text" class="bwidth" name="bwidth" id="width2" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(13% - 60px);">
                     <label for="bheight" style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">Exact Height:</label>
-                    <input type="text" class="bheight" name="bheight" id="height2" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)" required inputmode="none">
+                    <input type="text" class="bheight" name="bheight" id="height2" required oninput="convertToFraction(this)" placeholder="0" onfocus="showKeyboard(this)">
                 </div>
         
                 <div class="windowInfoBottom" style="width: calc(3% - 1px);">
@@ -405,44 +368,22 @@
                     <input type="checkbox" class="wall" name="wall" id="wall1" value="Concrete" onclick="updateWallCount(this)" />
                 </div>
                 
+        
                 <div class="windowInfoBottom" style="width: calc(3% - 1px);">
                     <label for="td" style="border-bottom: 1px solid #fff; padding-bottom: 5px">T.D:</label>
                     <input type="checkbox" class="td" name="td" id="td1" value="yes" onclick="updateTDCount(this)" />
                 </div>
                 
+                
+        
                 <div class="windowInfoBottom" style="width: calc(15% - 60px);">
                     <label for="comm" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Comment:</label>
                     <input type="text" class="comm" name="comm" id="comm1" required>
                 </div>
 
             </section>
-
-             <!-- ///////////////////////////////////////////////////////////////       KEYBOARD             ////////////////////////////////////////////////// -->
-<div id="customKeyboard" class="keyboard">
-    <button onclick="insertValue('0')">0</button>
-    <button onclick="insertValue('1')">1</button>
-    <button onclick="insertValue('2')">2</button>
-    <button onclick="insertValue('3')">3</button>
-    <button onclick="insertValue('4')">4</button>
-    <button onclick="insertValue('5')">5</button>
-    <button onclick="insertValue('6')">6</button>
-    <button onclick="insertValue('7')">7</button>
-    <button onclick="insertValue('8')">8</button>
-    <button onclick="insertValue('9')">9</button>
-    <button onclick="insertValue(' 1/8')">1/8</button>
-    <button onclick="insertValue(' 1/4')">1/4</button>
-    <button onclick="insertValue(' 3/8')">3/8</button>
-    <button onclick="insertValue(' 1/2')">1/2</button>
-    <button onclick="insertValue(' 5/8')">5/8</button>
-    <button onclick="insertValue(' 3/4')">3/4</button>
-    <button onclick="insertValue(' 7/8')">7/8</button>
-    <button onclick="deleteLast()">DEL</button>
-    <button onclick="hideKeyboard()">X</button>
-</div>
-
-<!-- ///////////////////////////////////////////////////////////////       KEYBOARD             ////////////////////////////////////////////////// -->
         </form>
-
+        
         <script>
             let windowSectionCounter = 1; // Initialize the counter
 
@@ -803,79 +744,6 @@
 
     		var today = new Date().toLocaleDateString('en-CA');
     		document.getElementById('date').value = today;
-
-// ///////////////////////////////////////////////         KEYBOARD             ///////////////////////////////////////////////////////
-
-
-            function showKeyboard(input) {
-            var keyboard = document.getElementById('customKeyboard');
-            keyboard.style.display = 'block';
-            keyboard.currentInput = input;
-        }
-
-        function hideKeyboard() {
-            var keyboard = document.getElementById('customKeyboard');
-            keyboard.style.display = 'none';
-        }
-
-        function insertValue(value) {
-            var input = document.getElementById('customKeyboard').currentInput;
-            if (input) {
-                var currentValue = input.value;
-                input.value = currentValue + value;
-            }
-        }
-
-        function deleteLast() {
-            var input = document.getElementById('customKeyboard').currentInput;
-            if (input) {
-                var currentValue = input.value;
-                input.value = currentValue.slice(0, -1);
-            }
-        }
-
-        // Function to adjust window-container padding based on keyboard height
-        function adjustWindowContainerPadding() {
-            var keyboardHeight = document.getElementById('customKeyboard').offsetHeight;
-            document.querySelector('.window-container').style.paddingBottom = keyboardHeight + 'px';
-        }
-
-        // Call adjustWindowContainerPadding initially and on window resize
-        adjustWindowContainerPadding();
-        window.addEventListener('resize', adjustWindowContainerPadding);
-
-
-
-            // Function to handle focus on input fields
-        function focusInputField(inputFieldId) {
-            // Remove focus from all input fields
-            var inputFields = document.querySelectorAll('input[type="text"]');
-            inputFields.forEach(function(input) {
-                input.blur();
-            });
-
-            // Focus on the specified input field
-            var inputField = document.getElementById(inputFieldId);
-            inputField.focus();
-        }
-
-        // Event listeners for keyboard buttons
-        document.getElementById('customKeyboard').addEventListener('click', function(event) {
-            if (event.target.tagName === 'BUTTON') {
-                var buttonValue = event.target.textContent;
-                var currentInputField = document.activeElement;
-
-                // Insert the button value into the focused input field
-                if (currentInputField && currentInputField.tagName === 'INPUT') {
-                    var currentValue = currentInputField.value;
-                    currentInputField.value = currentValue + buttonValue;
-                }
-            }
-        });
-
-
-// ///////////////////////////////////////////////         KEYBOARD             ///////////////////////////////////////////////////////
-
             
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
