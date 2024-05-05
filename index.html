@@ -833,11 +833,12 @@
         }
 
         // Function to handle mouse down event
-        function handleMouseDown(e) {
-            isDragging = true;
-            offsetX = e.clientX - parseFloat(getComputedStyle(customKeyboard).left);
-            offsetY = e.clientY - parseFloat(getComputedStyle(customKeyboard).top);
-        }
+       function handleMouseDown(e) {
+    isDragging = true;
+    offsetX = e.clientX - parseFloat(getComputedStyle(customKeyboard).left);
+    offsetY = e.clientY - parseFloat(getComputedStyle(customKeyboard).top);
+    e.preventDefault(); // Prevent default behavior
+}
 
         // Function to handle mouse move event
         function handleMouseMove(e) {
