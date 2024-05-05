@@ -864,6 +864,44 @@ document.addEventListener('touchstart', function(event) {
         customKeyboard.addEventListener('mousedown', handleMouseDown);
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', handleMouseUp);
+
+            // Function to handle touchstart event
+function handleTouchStart(e) {
+    // Prevent default behavior to avoid the iPad keyboard
+    e.preventDefault();
+
+    // Set dragging flag to true
+    isDragging = true;
+
+    // Calculate the offset
+    const touch = e.touches[0];
+    offsetX = touch.clientX - parseFloat(getComputedStyle(customKeyboard).left);
+    offsetY = touch.clientY - parseFloat(getComputedStyle(customKeyboard).top);
+}
+
+// Function to handle touchmove event
+function handleTouchMove(e) {
+    if (isDragging) {
+        // Prevent default behavior to avoid scrolling on touch devices
+        e.preventDefault();
+
+        // Update the position of the custom keyboard
+        const touch = e.touches[0];
+        customKeyboard.style.left = (touch.clientX - offsetX) + 'px';
+        customKeyboard.style.top = (touch.clientY - offsetY) + 'px';
+    }
+}
+
+// Function to handle touchend event
+function handleTouchEnd() {
+    // Reset the dragging flag
+    isDragging = false;
+}
+
+// Event listeners for touch events
+customKeyboard.addEventListener('touchstart', handleTouchStart);
+document.addEventListener('touchmove', handleTouchMove);
+document.addEventListener('touchend', handleTouchEnd);
     	
         var today = new Date().toLocaleDateString('en-CA');
     	document.getElementById('date').value = today;
