@@ -83,7 +83,7 @@
                 border: none;
                 /* border-bottom: 1px solid #ccc; Add an underline */
                 width: 100.94%;
-                background-color: rgba(224, 224, 224, 0.13); /* Transparent background */
+                background-color: rgba(224, 224, 224, 0.1); /* Transparent background */
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 font-size: 16px;
                 text-align: center; /* Adjust text alignment */
@@ -145,6 +145,18 @@
                 transform: scale(1.05); /* Scale the button slightly on hover */
             }
             
+            button3 {
+                padding: 10px;
+                cursor: pointer;
+                background-color: #3498dbb6;
+                color: #fff;
+                border: none;
+                border-radius: 25px;
+                margin-top: 10px;
+                margin-left: 9px;
+                margin-bottom: 10px;
+            }
+
             @media print {
                 body {
                     background-color: #fff;
@@ -221,6 +233,7 @@
             .windowInfoSection .room {
                 padding-left: 30px; /* Add some left padding to make room for the counter */
             }
+            
             .keyboard {
                 display: none;
                 position: fixed;
@@ -228,7 +241,7 @@
                 left: 50%;
                 transform: translate(-50%, -80%); /* Adjust the second value to increase space at the bottom */
                 width: 240px;
-                background-color: rgba(255, 255, 255, 0.201); /* Match the background color of the form */
+                background-color: rgba(255, 255, 255, 0.9); /* Match the background color of the form */
                 border: 1px solid #ccc;
                 border-radius: 15px; /* Match the border radius of the form */
                 overflow: hidden;
@@ -427,7 +440,7 @@
                         <button onclick="insertValue('8')">8</button>
                         <button onclick="insertValue('9')">9</button>
                     </div>
-                    <div class="bottom-row">
+                    <div class="bottom-row" style="padding-bottom: 10px;">
                         <button onclick="insertValue(' 1/8')">1/8</button>
                         <button onclick="insertValue(' 1/4')">1/4</button>
                         <button onclick="insertValue(' 3/8')">3/8</button>
