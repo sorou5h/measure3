@@ -860,6 +860,26 @@ document.addEventListener('touchstart', function(event) {
         event.preventDefault();
     }
 });
+
+            // Global variable to track if the page has been scrolled up
+let isPageScrolledUp = false;
+
+// Function to handle focus on the first input
+function handleFirstInputFocus() {
+    if (!isPageScrolledUp) {
+        // Scroll the page up to bring the input into view
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        isPageScrolledUp = true; // Set the flag to true
+    }
+}
+
+// Add event listener to the first input
+const firstInput = document.querySelector('input');
+firstInput.addEventListener('focus', handleFirstInputFocus);
+            
         // Event listeners for mouse events
         var customKeyboard = document.getElementById('customKeyboard');
         customKeyboard.addEventListener('mousedown', handleMouseDown);
