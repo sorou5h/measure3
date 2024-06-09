@@ -114,45 +114,64 @@
             }
 
             button {
-                padding: 10px;
-                cursor: pointer;
-                background-color: #3498dbb6;
-                color: #fff;
-                border: none;
-                border-radius: 25px;
-                margin-top: 10px;
-                margin-left: 9px;
-            }
+    padding: 12px 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: #4CAF50; /* Changed to a green shade */
+    color: #fff; /* Changed to white for better contrast */
+    border: none;
+    border-radius: 30px;
+    margin-top: 16px;
+    margin-left: 12px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
 
-            button:hover {
-                background-color: #616bfce9; /* Darker green */
-                transform: scale(1.05); /* Scale the button slightly on hover */
-            }
+button:hover {
+    background-color: #3e8e41; /* Changed to a darker green shade on hover */
+    transform: scale(1.1);
+}
 
-            .button2 {
-                padding: 10px;
-                cursor: pointer;
-                background-color: #db3437a1;
-                color: #fff;
-                border: none;
-                border-radius: 25px;
-                margin-top: 10px;
-                margin-left: 9px;
-            }
-            .button2:hover {
-                background-color: #fc6170ec; /* Darker green */
-                transform: scale(1.05); /* Scale the button slightly on hover */
-            }
+.button2 {
+    padding: 12px 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    margin-top: 16px;
+    margin-left: 12px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    background-color: #FF9800; /* Changed to an orange shade */
+    color: #fff; /* Changed to white for better contrast */
+}
+
+.button2:hover {
+    background-color: #FFC107; /* Changed to a darker orange shade on hover */
+    transform: scale(1.1);
+}
             
-            @media print {
-                body {
-                    background-color: #fff;
-                }
+@media print {
+    body {
+        background-color: #fff;
+    }
 
-                section {
-                    margin-right: 0;
-                }
-            }
+    section {
+        margin-right: 0;
+        page-break-inside: avoid; /* Prevents page breaks inside sections */
+    }
+
+    .windowInfoSection {
+        page-break-before: auto; /* Avoid page breaks within the window info sections */
+    }
+
+    .window-container {
+        page-break-inside: avoid; /* Prevent page breaks inside the container */
+    }
+
+    .page-break {
+        page-break-before: always; /* Forces a page break before this element */
+    }
+}
+
             
             #commentSection {
                 width: 100%;
@@ -220,7 +239,43 @@
             .windowInfoSection .room {
                 padding-left: 30px; /* Add some left padding to make room for the counter */
             }
+            
+            /* Style the checkbox for Concrete and TD */
+            .windowInfoBottom input[type="checkbox"] {
+                width: 20px;
+                height: 20px;
+                margin: 0 10px;
+                vertical-align: middle;
+                position: relative;
+                top: 2px;
+                cursor: pointer;
+            }
 
+            .windowInfoBottom input[type="checkbox"]:before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 20px;
+                height: 20px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #fff;
+            }
+
+            .windowInfoBottom input[type="checkbox"]:checked:before {
+                background-color: #3498db;
+                border-color: #3498db;
+            }
+
+            .windowInfoBottom input[type="checkbox"]:checked:after {
+                content: "\2713";
+                position: absolute;
+                top: 2px;
+                left: 6px;
+                font-size: 14px;
+                color: #fff;
+            }
         </style>
     </head>
     <body>
@@ -231,24 +286,25 @@
             <button type="button" onclick="createCommentSection()" id="commentButton">ADD COMMENT</button>  
             <button class="button2" id="removeCommentButton" onclick="removeCommentSection()">REMOVE COMMENT</button>
             <button class="button2" type="button" onclick="clearWindowInfo()" id="clearButton">CLEAR</button>
+        
         </div>
         <form>
             <h3>Soroush - I0344</h3>
             <section>
 
-                 <div class="customerInfo">
+                <div class="customerInfo">
                     <label for="room" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Customer Name:</label>
-                    <input type="text" class="room" name="customerName" id="customerName" required placeholder="John Doe">
+                    <input type="text" class="room" name="customerName" id="customerName" required>
                 </div>
 
                 <div class="customerInfo">
                     <label for="quantity" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Order Number:</label>
-                    <input type="text" class="quantity" name="orderNumber" id="orderNumber" required placeholder="000 000">
+                    <input type="text" class="quantity" name="orderNumber" id="orderNumber" required>
                 </div>
 
                 <div class="customerInfo">
                     <label for="mount" style=" border-bottom: 1px solid #ccc; padding-bottom: 5px;">Store Number:</label>
-                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required placeholder="00">
+                    <input type="text" class="mount" name="storeNumber" id="storeNumber" required>
                 </div>
 
                 <div class="customerInfo">
@@ -367,19 +423,17 @@
                     <label for="wall" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Concrete:</label>
                     <input type="checkbox" class="wall" name="wall" id="wall1" value="Concrete" onclick="updateWallCount(this)" />
                 </div>
-                
         
                 <div class="windowInfoBottom" style="width: calc(3% - 1px);">
                     <label for="td" style="border-bottom: 1px solid #fff; padding-bottom: 5px">T.D:</label>
                     <input type="checkbox" class="td" name="td" id="td1" value="yes" onclick="updateTDCount(this)" />
                 </div>
-                
-                
-        
+            
                 <div class="windowInfoBottom" style="width: calc(15% - 60px);">
                     <label for="comm" style="border-bottom: 1px solid #fff; padding-bottom: 5px">Comment:</label>
                     <input type="text" class="comm" name="comm" id="comm1" required>
                 </div>
+                
             </section>
         </form>
         
@@ -583,18 +637,20 @@
                 .set({
                     filename: `${sanitizedCustomerName}_${sanitizedOrderNumber}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
-                    // html2canvas: { scale: 1.5 }, // Reduced scale
                     jsPDF: { unit: 'mm', format: 'a3', orientation: 'landscape' },
+                    //margin: [10, 10, 10, 10], // Add margins to the PDF
+                    // pagebreak: { mode: ['avoid-all', 'css'] }, // Improve page breaking
+                    timeout: 30000, // 30 seconds timeout
                 })
                 .toPdf()
                 .get('pdf')
-                .then(function (pdf) {
+                .then((pdf) => {
                     const totalPages = pdf.internal.getNumberOfPages();
                     pdf.setFontSize(10); // Set the font size for the page numbers
                     pdf.setTextColor(150); // Set the text color for the page numbers
                     for (let i = 1; i <= totalPages; i++) {
                         pdf.setPage(i);
-                        pdf.text('Page ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() - 30, pdf.internal.pageSize.getHeight() - 5);
+                        pdf.text(`Page ${i} of ${totalPages}`, pdf.internal.pageSize.getWidth() - 30, pdf.internal.pageSize.getHeight() - 5);
                     }
                 })
                 .save()
@@ -616,7 +672,7 @@
                     removeCommentButton.style.display = 'inline-block';
                 });
             }
-
+            
             function clearWindowInfo() {
                 // Display a confirmation prompt
                 const confirmed = confirm("Are you sure you want to clear?");
