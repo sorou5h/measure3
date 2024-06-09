@@ -6,6 +6,26 @@
 
         <title>Measurement Sheet</title>
         <style>
+
+            /* Add vendor prefixes for compatibility */
+input, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* Ensure proper box sizing */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Simplified layout for testing */
+section {
+    page-break-inside: avoid;
+}
+
             body {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 margin: 0;
@@ -517,43 +537,43 @@ button:hover {
                 return `${roundedDecimal.toFixed(3)}`; // Default to decimal inches if no matching fraction is found
             }
 
-            function addWindowSection() {
-                // Clone the entire window information section and append it to the form
-                const windowSections = document.querySelectorAll('.window-container');
-                const lastWindowSection = windowSections[windowSections.length - 1];
+            // function addWindowSection() {
+            //     // Clone the entire window information section and append it to the form
+            //     const windowSections = document.querySelectorAll('.window-container');
+            //     const lastWindowSection = windowSections[windowSections.length - 1];
 
-                if (lastWindowSection) {
-                    const newWindowSection = lastWindowSection.cloneNode(true);
+            //     if (lastWindowSection) {
+            //         const newWindowSection = lastWindowSection.cloneNode(true);
 
-                    // Increment the counter for the next window section
-                    windowSectionCounter++;
+            //         // Increment the counter for the next window section
+            //         windowSectionCounter++;
 
-                    // Update the section number in the cloned window section
-                    const sectionNumberElement = newWindowSection.querySelector('.section-number');
-                    if (sectionNumberElement) {
-                        sectionNumberElement.textContent = windowSectionCounter;
-                    }
+            //         // Update the section number in the cloned window section
+            //         const sectionNumberElement = newWindowSection.querySelector('.section-number');
+            //         if (sectionNumberElement) {
+            //             sectionNumberElement.textContent = windowSectionCounter;
+            //         }
 
-                    // Reset input field values in the cloned section
-                    newWindowSection.querySelectorAll('input, select').forEach(element => {
-                        element.value = '';
+            //         // Reset input field values in the cloned section
+            //         newWindowSection.querySelectorAll('input, select').forEach(element => {
+            //             element.value = '';
 
-                        // Reset checkbox states
-                        if (element.type === 'checkbox') {
-                            element.checked = false;
-                        }
-                    });
+            //             // Reset checkbox states
+            //             if (element.type === 'checkbox') {
+            //                 element.checked = false;
+            //             }
+            //         });
 
-                    // Append the new window section to the form
-                    document.querySelector('form').appendChild(newWindowSection);
+            //         // Append the new window section to the form
+            //         document.querySelector('form').appendChild(newWindowSection);
 
-                    // Show the remove button when adding sections
-                    const removeWindowButton = document.getElementById('removeWindowButton');
-                    removeWindowButton.style.display = 'inline-block';
-                } else {
-                    console.error('No existing window section found.');
-                }
-            }
+            //         // Show the remove button when adding sections
+            //         const removeWindowButton = document.getElementById('removeWindowButton');
+            //         removeWindowButton.style.display = 'inline-block';
+            //     } else {
+            //         console.error('No existing window section found.');
+            //     }
+            // }
 
             function saveData() {
                 const customerData = {
@@ -748,40 +768,76 @@ button:hover {
                 document.body.appendChild(pageBreak);
             }
             
-            function removeWindowSection() {
-                // Select all window sections
-                const windowSections = document.querySelectorAll('.window-container');
+            // function removeWindowSection() {
+            //     // Select all window sections
+            //     const windowSections = document.querySelectorAll('.window-container');
     
-                // Check if there's more than one section left
-                if (windowSections.length > 1) {
-                    // Display a confirmation prompt
-                    const confirmation = confirm('Are you sure you want to remove the last window section?');
-                    if (confirmation) {
-                        // Remove the last window section (from the bottom)
-                        const lastWindowSection = windowSections[windowSections.length - 1];
+            //     // Check if there's more than one section left
+            //     if (windowSections.length > 1) {
+            //         // Display a confirmation prompt
+            //         const confirmation = confirm('Are you sure you want to remove the last window section?');
+            //         if (confirmation) {
+            //             // Remove the last window section (from the bottom)
+            //             const lastWindowSection = windowSections[windowSections.length - 1];
 
-                        // Decrement the "Concrete" count if the checkbox is checked
-                        const wallCheckbox = lastWindowSection.querySelector('.wall');
-                        if (wallCheckbox && wallCheckbox.checked) {
-                            const wallInput = document.getElementById('wall');
-                            wallInput.value = Math.max(parseInt(wallInput.value || 0) - 1, 0);
-                        }
+            //             // Decrement the "Concrete" count if the checkbox is checked
+            //             const wallCheckbox = lastWindowSection.querySelector('.wall');
+            //             if (wallCheckbox && wallCheckbox.checked) {
+            //                 const wallInput = document.getElementById('wall');
+            //                 wallInput.value = Math.max(parseInt(wallInput.value || 0) - 1, 0);
+            //             }
 
-                        // Decrement the "T.D." count if the checkbox is checked
-                        const tdCheckbox = lastWindowSection.querySelector('.td');
-                        if (tdCheckbox && tdCheckbox.checked) {
-                            const tdInput = document.getElementById('td');
-                            tdInput.value = Math.max(parseInt(tdInput.value || 0) - 1, 0);
-                        }
+            //             // Decrement the "T.D." count if the checkbox is checked
+            //             const tdCheckbox = lastWindowSection.querySelector('.td');
+            //             if (tdCheckbox && tdCheckbox.checked) {
+            //                 const tdInput = document.getElementById('td');
+            //                 tdInput.value = Math.max(parseInt(tdInput.value || 0) - 1, 0);
+            //             }
 
-                        // Remove the last window section
-                        lastWindowSection.remove();
-                    }
-                } else {
-                    console.log('Cannot remove the last section.');
-                }
-            }
+            //             // Remove the last window section
+            //             lastWindowSection.remove();
+            //         }
+            //     } else {
+            //         console.log('Cannot remove the last section.');
+            //     }
+            // }
 
+
+
+
+
+
+            function addWindowSection() {
+    var container = document.querySelector('.window-container');
+    var windowSection = document.createElement('div');
+    windowSection.className = 'windowInfoSection';
+    windowSection.style.width = '100%';
+    windowSection.style.borderBottom = '1px solid #ccc';
+
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'room';
+    input.required = true;
+    input.placeholder = 'ROOM';
+
+    var span = document.createElement('span');
+    span.className = 'section-number';
+    span.textContent = container.children.length + 1;
+
+    windowSection.appendChild(input);
+    windowSection.appendChild(span);
+    container.appendChild(windowSection);
+}
+
+function removeWindowSection() {
+    var container = document.querySelector('.window-container');
+    if (container.children.length > 0) {
+        container.removeChild(container.lastChild);
+    }
+}
+
+
+            
             function removeCommentSection() {
                 // Select the comment section
                 const commentSection = document.getElementById('commentSection');
