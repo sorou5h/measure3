@@ -495,7 +495,7 @@ button:hover {
 
                 // Check if the input is a fraction or a valid decimal
                 const isFraction = /^\d+\/\d+$/.test(inputValue);
-                const isValidDecimal = /^(\d*\.\d{3,5})?$/.test(inputValue);
+                const isValidDecimal = /^(\d*\.\d{2,5})?$/.test(inputValue);
 
                 if (isFraction || isValidDecimal || inputValue === "") {
                     // If the input is a fraction, a valid decimal, or an empty string, leave it as it is
@@ -534,7 +534,7 @@ button:hover {
                         }
                     }
                 }
-                return `${roundedDecimal.toFixed(3)}`; // Default to decimal inches if no matching fraction is found
+                return `${roundedDecimal.toFixed(2)}`; // Default to decimal inches if no matching fraction is found
             }
 
             function addWindowSection() {
